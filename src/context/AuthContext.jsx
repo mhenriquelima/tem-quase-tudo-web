@@ -6,14 +6,19 @@ const AuthContext = createContext(null);
 export function AuthProvider({ children }) {
     const [usuario, setUsuario] = useState(() => {
         const salvo = localStorage.getItem('usuario');
-        return salvo ? JSON.parse(salvo) : null;
+        if (!salvo || salvo === 'undefined') return null;
+        try {
+            return JSON.parse(salvo);
+        } catch {
+            return null;
+        }
     });
 
     async function entrar(email, senha) {
-        const { token, usuario } = await authApi.login(email, senha);
+        const { token, user } = await authApi.login(email, senha);
         localStorage.setItem('token', token);
-        localStorage.setItem('usuario', JSON.stringify(usuario));
-        setUsuario(usuario);
+        localStorage.setItem('usuario', JSON.stringify(user));
+        setUsuario(user);
     }
 
     function sair() {
