@@ -11,6 +11,7 @@ import Carrinho from './pages/Carrinho';
 import Pedidos from './pages/Pedidos';
 import PedidoDetalhe from './pages/PedidoDetalhe';
 import ProdutosAdmin from './pages/admin/ProdutosAdmin';
+import ComoFiz from './pages/ComoFiz';
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
           <Route path="/pedidos" element={<PrivateRoute><Pedidos /></PrivateRoute>} />
           <Route path="/pedidos/:id" element={<PrivateRoute><PedidoDetalhe /></PrivateRoute>} />
           <Route path="/admin/produtos" element={<AdminRoute><ProdutosAdmin /></AdminRoute>} />
+          <Route path="/como-fiz" element={<ComoFiz />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>
